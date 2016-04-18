@@ -1,0 +1,29 @@
+#include <Adafruit_NeoPixel.h>
+#define PIN 1
+#define NUMPIX  4
+byte buttonPin = 2;
+byte button = 0;
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(NUMPIX, PIN, NEO_GRB + NEO_KHZ800);
+
+void setup() {
+  pinMode(buttonPin, INPUT);
+  strip.begin();
+}
+
+void loop() {
+  int button = digitalRead(buttonPin);
+  if (button == HIGH) {
+    for (int i = 0; i < NUMPIX; i++) {
+      strip.setPixelColor(i, strip.Color(255, 255, 255));
+      strip.show();
+      delay(200);
+    }
+  }
+  else if (button == LOW){
+    for (int j = 0; j < NUMPIX; j++) {
+      strip.setPixelColor(j, strip.Color(0, 0, 0));
+      strip.show();
+      delay(200);
+    }
+  }
+}
